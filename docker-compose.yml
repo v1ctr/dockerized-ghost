@@ -33,6 +33,26 @@ services:
     networks:
       - app-network
 
+  ghost-backup:
+    image: alpine
+    tty: false
+    environment:
+      - TARGET=ghost_data
+    volumes:
+      - ./backup:/backup
+      - ghost_data:/volume
+    command: sh -c "tar -cjf /backup/$${TARGET}.tar.bz2 -C /volume ./"
+
+  db-backup:
+    image: alpine
+    tty: false
+    environment:
+      - TARGET=db_data
+    volumes:
+      - ./backup:/backup
+      - db_data:/volume
+    command: sh -c "tar -cjf /backup/$${TARGET}.tar.bz2 -C /volume ./"
+
 volumes:
   ghost_data:
   db_data:

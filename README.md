@@ -11,3 +11,14 @@
    GHOST_URL=your_ghost_url
    ```
 2. Run ```docker-compose -p dockerized-ghost up -d```
+
+## Backing Ghost CMS up
+
+1. Run ```sh backup.sh``` to
+
+## Restoring Ghost CMS
+
+1. To restore from `backup/dbdata.tar.bz2`, do:
+    ```shell script
+   docker-compose run --rm ghost-restore
+   ```
